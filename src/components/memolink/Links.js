@@ -51,7 +51,7 @@ const Links = (props) => {
         </Box>
       </Layer>
     )}
-    <Anchor label={label} href={link} textAlign="start" color="dark-1"/>
+    <Anchor label={label} href={link} target="_blank" rel="noopener noreferrer" textAlign="start" color="dark-1"/>
     <div tooltip={`Delete ${label} ?`}>
       <Button
         plain
