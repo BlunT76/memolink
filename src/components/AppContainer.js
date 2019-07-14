@@ -5,7 +5,9 @@ import ListCategories from './memolink/ListCategories';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import Notification from './Notification';
+import Home from './Home';
 import { connect } from 'react-redux';
+import { setUserData, setListsData, setLinksData } from '../store/Actions';
 
 
 const mapStateToProps = (state) => {
@@ -42,6 +44,15 @@ class AppContainer extends PureComponent {
     window.addEventListener("resize", this.updateDimensions);
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    document.removeEventListener("resize", this.updateDimensions);
+    dispatch(setUserData({ jwt: null, userid: null, isLogged: false }));
+    dispatch(setListsData([]));
+    dispatch(setLinksData([]));
+  }
+
+
   updateDimensions = () => {
     const col = Math.floor(document.body.clientWidth /250);
     this.setState({colNumber: col > 0 ? col : 1});
@@ -63,6 +74,7 @@ class AppContainer extends PureComponent {
                   </Box>
                 </AppBar>
                 <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
+                  {!user.isLogged && <Home />}
                   {user.isLogged && <ListCategories colNumber={colNumber}/>}
                   {showAlertStatus.show && <Notification />}
                 </Box>

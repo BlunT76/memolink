@@ -40,14 +40,10 @@ class SignUp extends PureComponent {
 
   checkLogin = async (event) => {
     const { dispatch } = this.props;
-    const {
-      // eslint-disable-next-line camelcase
-      username, email, password_1, password_2,
-    } = this.state;
+    const { username, email, password_1, password_2 } = this.state;
     event.preventDefault();
     const response = apiSignUp(username, email, password_1, password_2);
     const responseJSON = await response;
-    console.log(response)
     if (responseJSON.data.code === 200) {
       dispatch(setShowAlertStatus({
         title: responseJSON.data.status,

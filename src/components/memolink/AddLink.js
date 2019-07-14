@@ -37,7 +37,6 @@ class AddLink extends PureComponent {
   getCategories = async () => {
     const { dispatch, user } = this.props;
     const response = await apiGet(user.jwt, 'categories');
-    console.log(response)
     if (response.status === 200 && response.data.length > 0) {
       dispatch(setListsData(response.data));
     } else {

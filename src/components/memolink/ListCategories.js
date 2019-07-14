@@ -38,7 +38,6 @@ class ListCategories extends PureComponent {
   getCategories = async () => {
     const { dispatch, user } = this.props;
     const response = await apiGet(user.jwt, 'categories');
-    console.log('GETCATEGORIES',response)
     if (response.status === 200 && response.data.length > 0) {
       dispatch(setListsData(response.data));
       this.getLinks();
@@ -72,7 +71,6 @@ class ListCategories extends PureComponent {
   deleteCategories = async (catId) => {
     const { user, dispatch } = this.props;
     const res = await apiDelete(user.jwt, 'categories', catId);
-    console.log('DELETECATEGORY: ', res)
     if (res.data === 1) {
       this.getCategories();
       dispatch(setShowAlertStatus({
@@ -95,7 +93,6 @@ class ListCategories extends PureComponent {
   getLinks = async () => {
     const { dispatch, user } = this.props;
     const response = await apiGet(user.jwt, 'links');
-    console.log('LINKS: ', response)
     if (response.status === 200 && response.data.length > 0) {
       dispatch(setLinksData(response.data));
     }
@@ -104,7 +101,6 @@ class ListCategories extends PureComponent {
   deleteLink = async (id) => {
     const { user, dispatch } = this.props;
     const res = await apiDelete(user.jwt, 'links', id);
-    console.log('DELETELINK: ', res)
     if (res.data === 1) {
       this.getCategories();
       dispatch(setShowAlertStatus({
@@ -134,7 +130,6 @@ class ListCategories extends PureComponent {
   render() {
     const { lists, colNumber, links } = this.props;
     const { openConfirmation, catId, catTitle } = this.state;
-    console.log(this.state)
     return (
       <Box fill>
         {openConfirmation && (
@@ -157,13 +152,21 @@ class ListCategories extends PureComponent {
                 justify="end"
                 pad={{ top: "medium", bottom: "small" }}
               >
-                <Button label="Cancel" onClick={this.onClose} color="dark-3" />
+                <Button
+                  label="Cancel"
+                  onClick={this.onClose}
+                  color="dark-3"
+                  hoverIndicator="neutral-2"
+                  style={{borderRadius:"0", padding: "5px",background:"brand", boxShadow: "none", border: "0 none"}}
+                />
                 <Button
                   label={
                     <Text color="white">
                       <strong>Delete</strong>
                     </Text>
                   }
+                  style={{borderRadius:"0", color:"#F8F8F8",background:"brand", padding: "5px", boxShadow: "none", border: "0 none"}}
+                  hoverIndicator="neutral-2"
                   onClick={() => {this.deleteCategories(catId)}}
                   primary
                   color="status-critical"

@@ -36,7 +36,6 @@ class AddCategory extends PureComponent {
   getCategories = async () => {
     const { dispatch, user } = this.props;
     const response = await apiGet(user.jwt, 'categories');
-    console.log(response)
     if (response.status === 200 && response.data.length > 0) {
       dispatch(setListsData(response.data));
     } else {
@@ -51,12 +50,10 @@ class AddCategory extends PureComponent {
 
   postCategory = async (event) => {
     event.preventDefault();
-    console.log(this.state)
     const { dispatch, user } = this.props;
     const { title } = this.state;
     const data = { title, users_id: user.userid };
     const res = await apiPost(user.jwt, 'categories', data);
-    console.log(res)
     if (res.status === 200) {
       this.getCategories();
       dispatch(setShowAlertStatus({
