@@ -5,17 +5,18 @@ use Firebase\JWT\JWT;
 /* ----------CONFIG---------- */
 
 // connect to the mysql database
-$db = mysqli_connect('db url', 'user', 'password', 'db name');
+$db = mysqli_connect('dburl', 'username', 'password', 'database');
 mysqli_set_charset($db, 'utf8');
 
 // JWT secret
-define('JWT_SECRET', 'change the secret phrase');
+define('JWT_SECRET', 'type you secret');
 
 // Forbidden tables
 $forbiddenTables = ['users'];
 
 // Authorized client needed for cors
-$client = 'http://localhost:3000';
+// $client = 'http://localhost:3000';
+$client = 'https://yoursite.url';
 
 
 /* ----------END CONFIG---------- */
@@ -57,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     header('Access-Control-Allow-Origin: '. $client);
     header('Content-Type: application/json');
     header('Access-Control-Allow-Methods: GET, OPTIONS');
-    header('Cache-Control: max-age=31557600');
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
     header('Access-Control-Allow-Credentials: true');
 }
 
@@ -158,6 +159,12 @@ switch ($method) {
         }
         if ($table === 'tasks') {
             $sql = "select * from `$table`".($key?" WHERE (lists_id=$key) AND":'WHERE')." (users_id"."=$userid) ORDER BY id ASC";
+        }
+        if ($table === 'categories') {
+            $sql = "select * from `$table` WHERE (users_id=$userid) ORDER BY id ASC";
+        }
+        if ($table === 'links') {
+            $sql = "select * from `$table`".($key?" WHERE (categories_id=$key) AND":'WHERE')." (users_id"."=$userid) ORDER BY id ASC";
         }
         // echo json_encode($sql);
         // $sql = "select * from `$table`".($key?" WHERE id=$key":'ORDER BY id DESC'); // original query
