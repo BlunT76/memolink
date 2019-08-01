@@ -25,10 +25,9 @@ const MasonryLayout = props => {
       <div
         key={i}
         style={{
-          marginLeft: `${props.gap}px`, // `${i > 0 ? props.gap : 0}px`,
+          marginLeft: `${i > 0 ? props.gap : 0}px`,
           flex: 1,
           flexBasis: '100%',
-          // alignItems: "stretch"
         }}>
         {columnWrapper[`column${i}`]}
       </div>

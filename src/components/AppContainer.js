@@ -4,6 +4,7 @@ import AppBar from './AppBar';
 import ListCategories from './memolink/ListCategories';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import Logout from './Logout';
 import Notification from './Notification';
 import Home from './Home';
 import { connect } from 'react-redux';
@@ -36,10 +37,12 @@ class AppContainer extends PureComponent {
     state = {
       showSidebar: false,
       colNumber: 1,
-      list: []
+      list: [],
+      bodyWidth: document.body.clientWidth,
     }
   
   componentDidMount() {
+    this.checkJWT();
     this.setState({colNumber: Math.floor(document.body.clientWidth /250)});
     window.addEventListener("resize", this.updateDimensions);
   }
@@ -52,14 +55,35 @@ class AppContainer extends PureComponent {
     dispatch(setLinksData([]));
   }
 
+  checkJWT = async () => {
+    // check if stored user.jwt is valid
+    if (localStorage.getItem('date') !== null) {
+      const jwtExpireAt = +localStorage.getItem('date') + 86220;
+      if (jwtExpireAt > Date.now() / 1000) {
+        const { dispatch } = this.props;
+        const jwt = localStorage.getItem('jwt');
+        const userid = localStorage.getItem('userid');
+        const role = localStorage.getItem('role');
+        dispatch(setUserData({
+          jwt, userid, role, isLogged: true,
+        }));
+      } else {
+        localStorage.clear();
+      }
+    }
+  }
 
   updateDimensions = () => {
     const col = Math.floor(document.body.clientWidth /250);
-    this.setState({colNumber: col > 0 ? col : 1});
+    const bodyWidth = document.body.clientWidth;
+    this.setState({
+      colNumber: col > 0 ? col : 1,
+      bodyWidth,
+    });
   }
 
   render(){
-    const { colNumber } = this.state;
+    const { colNumber, bodyWidth } = this.state;
     const { user, showAlertStatus } = this.props;
     return (
         <Grommet theme={theme} full>
@@ -71,11 +95,12 @@ class AppContainer extends PureComponent {
                   <Box direction="row" justify="end" fill>
                     {!user.isLogged && <SignIn />}
                     {!user.isLogged && <SignUp />}
+                    {user.isLogged && <Logout />}
                   </Box>
                 </AppBar>
                 <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
                   {!user.isLogged && <Home />}
-                  {user.isLogged && <ListCategories colNumber={colNumber}/>}
+                  {user.isLogged && <ListCategories bodyWidth={bodyWidth} colNumber={colNumber}/>}
                   {showAlertStatus.show && <Notification />}
                 </Box>
               </Box>

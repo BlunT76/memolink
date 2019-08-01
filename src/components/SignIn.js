@@ -46,8 +46,12 @@ class SignIn extends Component {
     const responseJSON = await response;
 
     if (responseJSON.data.code === 200) {
-      const { jwt, userid } = responseJSON.data;
+      const { jwt, userid, role } = responseJSON.data;
       dispatch(setUserData({ jwt, userid, isLogged: true }));
+      localStorage.setItem('jwt', jwt);
+      localStorage.setItem('userid', userid);
+      localStorage.setItem('role', role);
+      localStorage.setItem('date', Date.now() / 1000);
       dispatch(setShowAlertStatus({
         title: responseJSON.data.status,
         text: responseJSON.data.message,

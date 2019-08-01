@@ -77,62 +77,65 @@ class AddCategory extends PureComponent {
 
   render() {
     const { open } = this.state;
+    const { bodyWidth } = this.props;
+    const btnMargin = bodyWidth > 770 ? {"right": "small", "top": "small"} : {"right": "xsmall", "top": "xsmall"};
     return (
-        <Box margin="none">
-          <Box align="end" margin="xsmall">
-            <Button
-              plain
-              style={{borderRadius:"0", color:"#F8F8F8", padding: "5px"}}
-              icon={<Add/>}
-              label="Add a Category"
-              hoverIndicator="neutral-2"
-              focusIndicator={false}
-              primary
-              onClick={this.onOpen}
-            />
-          </Box>
-          {open && (
-            <Layer
-              position="right"
-              full="vertical"
-              modal
-              onClickOutside={this.onClose}
-              onEsc={this.onClose}
+      <>
+        <Button
+          plain
+          style={{borderRadius:"0", color:"#F8F8F8", padding: "5px"}}
+          margin={btnMargin}
+          alignSelf="end"
+          icon={<Add/>}
+          label="Add a Category"
+          hoverIndicator="neutral-2"
+          focusIndicator={false}
+          primary
+          onClick={this.onOpen}
+        />
+        
+        {open && (
+          <Layer
+            position="right"
+            full="vertical"
+            modal
+            onClickOutside={this.onClose}
+            onEsc={this.onClose}
+          >
+            <Box
+              as="form"
+              fill="vertical"
+              overflow="auto"
+              width="medium"
+              pad="medium"
+              onSubmit={this.postCategory}
             >
-              <Box
-                as="form"
-                fill="vertical"
-                overflow="auto"
-                width="medium"
-                pad="medium"
-                onSubmit={this.postCategory}
-              >
-                <Box flex={false} direction="row" justify="between" onSubmit={this.checkLogin}>
-                  <Heading level={2} margin="none">
-                    Add a Category
-                  </Heading>
-                  <Button icon={<Close />} onClick={this.onClose} />
-                </Box>
-                <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
-                  <FormField label="Category Name">
-                    <TextInput type="text" name="title" onChange={this.handleChange}/>
-                  </FormField>
-                  <Button
-                    type="submit"
-                    label="Submit"
-                    margin={{"top": "medium"}}
-                    hoverIndicator="neutral-2"
-                    style={{borderRadius:"0", color:"#F8F8F8",background:"brand", padding: "5px", boxShadow: "none", border: "0 none"}}
-                    primary
-                  />
-                </Box>
-                <Box flex={false} as="footer" align="start">
-                  
-                </Box>
+              <Box flex={false} direction="row" justify="between" onSubmit={this.checkLogin}>
+                <Heading level={2} margin="none">
+                  Add a Category
+                </Heading>
+                <Button icon={<Close />} onClick={this.onClose} />
               </Box>
-            </Layer>
-          )}
-        </Box>
+              <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
+                <FormField label="Category Name">
+                  <TextInput type="text" name="title" onChange={this.handleChange}/>
+                </FormField>
+                <Button
+                  type="submit"
+                  label="Submit"
+                  margin={{"top": "medium"}}
+                  hoverIndicator="neutral-2"
+                  style={{borderRadius:"0", color:"#F8F8F8",background:"brand", padding: "5px", boxShadow: "none", border: "0 none"}}
+                  primary
+                />
+              </Box>
+              <Box flex={false} as="footer" align="start">
+                
+              </Box>
+            </Box>
+          </Layer>
+        )}
+      </>
     );
   }
 }

@@ -128,7 +128,7 @@ class ListCategories extends PureComponent {
   onClose = () => this.setState({ openConfirmation: false });
 
   render() {
-    const { lists, colNumber, links } = this.props;
+    const { lists, colNumber, links, bodyWidth } = this.props;
     const { openConfirmation, catId, catTitle } = this.state;
     return (
       <Box fill>
@@ -175,7 +175,7 @@ class ListCategories extends PureComponent {
             </Box>
           </Layer>
         )}
-        <AddCategory />
+        <AddCategory bodyWidth={bodyWidth}/>
         <MasonryLayout columns={colNumber} gap={10}>
 
           {lists && lists.length > 0 && lists.map((cat,i) => 
