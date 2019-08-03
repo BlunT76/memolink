@@ -2,32 +2,28 @@ import React, { Component } from "react";
 import { Logout } from "grommet-icons";
 import { Box, Button, Text } from "grommet";
 import { connect } from 'react-redux';
-import { setUserData } from '../store/Actions';
+import { setListsData, setLinksData, setPublic } from '../../store/Actions';
 
 const mapStateToProps = (state) => {
   const { isLogged } = state;
   return { isLogged };
 };
 
-class LogoutBtn extends Component {
-  logout = () => {
+class QuitPublic extends Component {
+  quitPublicPages = () => {
     const { dispatch } = this.props;
-    dispatch(setUserData({
-      jwt: null,
-      userid: null,
-      isLogged: false,
-      role: 0,
-    }));
-    localStorage.clear();
+    dispatch(setListsData([]));
+    dispatch(setLinksData([]));
+    dispatch(setPublic(false));
   }
 
   render() {
     const { bodyWidth } = this.props;
-    const btnLabel = bodyWidth > 480 ? 'Logout' : '';
+    const btnLabel = bodyWidth > 480 ? 'Quit Public Page' : '';
     return (
       <Box>
         <Box align="center" margin={ {"left": "small"} }>
-          <Button hoverIndicator="neutral-2" onClick={() => this.logout()}>
+          <Button hoverIndicator="neutral-2" onClick={() => this.quitPublicPages()}>
             <Box pad="small" direction="row" align="center" gap="xxsmall">
               <Logout />
               <Text>{btnLabel}</Text>
@@ -39,4 +35,4 @@ class LogoutBtn extends Component {
   }
 }
 
-export default connect(mapStateToProps)(LogoutBtn);
+export default connect(mapStateToProps)(QuitPublic);

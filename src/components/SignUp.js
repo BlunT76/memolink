@@ -74,13 +74,15 @@ class SignUp extends PureComponent {
 
   render() {
     const { open, reveal } = this.state;
+    const { bodyWidth } = this.props;
+    const btnLabel = bodyWidth > 480 ? 'SignUp' : '';
     return (
         <Box>
           <Box align="center" margin={ {"left": "small"} }>
             <Button hoverIndicator="neutral-2" onClick={this.onOpen}>
               <Box pad="small" direction="row" align="center" gap="xxsmall">
                 <UserAdd />
-                <Text>SignUp</Text>
+                <Text>{btnLabel}</Text>
               </Box>
             </Button>
           </Box>

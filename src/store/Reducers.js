@@ -3,6 +3,8 @@ import {
   SET_LISTS_DATA,
   SET_SHOW_ALERTSTATUS,
   SET_LINKS_DATA,
+  SET_PUBLIC,
+  SET_PUBLIC_USERNAME,
 } from './Actions';
 
 
@@ -11,7 +13,11 @@ const initialState = {
     jwt: null,
     userid: null,
     isLogged: false,
+    memolink_public: false,
+    memolink_public_url: 0,
   },
+  publicPage: false,
+  publicPageUsername: '',
   lists: [],
   links:[],
   showAlertStatus: {},
@@ -40,6 +46,16 @@ const memolinkReducer = (state = initialState, action) => {
       return {
         ...state,
         links: action.payload,
+      };
+    case SET_PUBLIC:
+      return {
+        ...state,
+        publicPage: action.payload,
+      };
+    case SET_PUBLIC_USERNAME:
+      return {
+        ...state,
+        publicPageUsername: action.payload,
       };
     default:
       return state;

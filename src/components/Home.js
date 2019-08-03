@@ -7,8 +7,9 @@ const Home = (props) => {
   return (
     <Box justify="center" align="center" fill>
       <Heading color="brand">Welcome to MemoLinks</Heading>
-      <Text>Create Bookmarks Categories, Add Links to yours categories </Text><br/>
+      <Text>Create Bookmarks Categories, Add Links to yours Categories,  </Text><br/>
       <Text color="brand"><strong>Done !!!</strong></Text><br/>
+      <Text>Activate Public ON and Share your MemoLinks with friends !!!</Text><br/>
       <Box direction="row" align="center">
         <Box height="small" width="small">
           <Image
@@ -18,7 +19,7 @@ const Home = (props) => {
         </Box>
         <Text color="dark-1">
           A Chrome extension is available.
-          <br/>Add links to MemoLink with 2 clicks !!!
+          <br/>Add links to MemoLink with 3 clicks !!!
           <br/>
           <Anchor color="brand" href="https://philpereira.alwaysdata.net/memolink/chrome-ext-memolinks-1.0.0.crx">Download</Anchor>
           <br />
@@ -26,7 +27,7 @@ const Home = (props) => {
         </Text>
       </Box>
       <br/>
-      <Text>Memolinks is Free and Opensource, no ads, no tracking ...</Text>
+      <Text>MemoLinks is Free and Opensource, no ads, no tracking ...</Text>
       <Anchor color="dark-1" icon={<Github size="medium"/>} href="https://github.com/BlunT76/memolink" />
     </Box>
   )

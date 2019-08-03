@@ -1,19 +1,20 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { setUserData, setListsData, setLinksData, setPublic } from '../store/Actions';
 import { Box, Heading, Grommet, ResponsiveContext } from 'grommet';
 import AppBar from './AppBar';
 import ListCategories from './memolink/ListCategories';
+import PublicListCategories from './memolink/PublicListCategories';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import Logout from './Logout';
+import QuitPublic from './memolink/QuitPublic';
 import Notification from './Notification';
 import Home from './Home';
-import { connect } from 'react-redux';
-import { setUserData, setListsData, setLinksData } from '../store/Actions';
-
 
 const mapStateToProps = (state) => {
-  const { user, showAlertStatus, show } = state;
-  return { user, showAlertStatus, show };
+  const { user, showAlertStatus, show, publicPage, publicPageUsername } = state;
+  return { user, showAlertStatus, show, publicPage, publicPageUsername };
 };
 
 const theme = {
@@ -38,6 +39,7 @@ class AppContainer extends PureComponent {
       showSidebar: false,
       colNumber: 1,
       list: [],
+      public: false,
       bodyWidth: document.body.clientWidth,
     }
   
@@ -45,6 +47,9 @@ class AppContainer extends PureComponent {
     this.checkJWT();
     this.setState({colNumber: Math.floor(document.body.clientWidth /250)});
     window.addEventListener("resize", this.updateDimensions);
+    if (window.location.pathname.split('/')[2] === 'public') {
+      this.showPublicPages();
+    }
   }
 
   componentWillUnmount() {
@@ -64,8 +69,11 @@ class AppContainer extends PureComponent {
         const jwt = localStorage.getItem('jwt');
         const userid = localStorage.getItem('userid');
         const role = localStorage.getItem('role');
+        const memolink_public = localStorage.getItem('memolink_public')=== 'true' ? true : false;
+        const memolink_public_url = localStorage.getItem('memolink_public_url');
+
         dispatch(setUserData({
-          jwt, userid, role, isLogged: true,
+          jwt, userid, role, isLogged: true, memolink_public, memolink_public_url
         }));
       } else {
         localStorage.clear();
@@ -82,27 +90,41 @@ class AppContainer extends PureComponent {
     });
   }
 
+  showPublicPages = () => {
+    const { dispatch } = this.props;
+    dispatch(setPublic(true));
+  }
+
   render(){
     const { colNumber, bodyWidth } = this.state;
-    const { user, showAlertStatus } = this.props;
+    const { user, showAlertStatus, publicPage, publicPageUsername } = this.props;
+
     return (
         <Grommet theme={theme} full>
           <ResponsiveContext.Consumer>
             {size => (
               <Box fill>
                 <AppBar>
-                  <Heading level='3' margin='none'>MemoLinks</Heading>
-                  <Box direction="row" justify="end" fill>
-                    {!user.isLogged && <SignIn />}
-                    {!user.isLogged && <SignUp />}
-                    {user.isLogged && <Logout />}
+                  <Box direction="row" justify="start" basis="2/3">
+                  <Heading style={{overflowWrap: 'normal', wordBreak: 'normal'}} alignSelf="center" level='3' margin='none'>{publicPage ? `Public MemoLinks ${publicPageUsername}` : 'MemoLinks'}</Heading>
+                  </Box>
+                  <Box direction="row" justify="end" basis="1/3">
+                    {!user.isLogged && !publicPage && <SignIn bodyWidth={bodyWidth} />}
+                    {!user.isLogged && !publicPage && <SignUp bodyWidth={bodyWidth} />}
+                    {user.isLogged && !publicPage && <Logout bodyWidth={bodyWidth} />}
+                    {publicPage && <QuitPublic bodyWidth={bodyWidth} />}
                   </Box>
                 </AppBar>
-                <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
+
+                {!publicPage && <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
                   {!user.isLogged && <Home />}
                   {user.isLogged && <ListCategories bodyWidth={bodyWidth} colNumber={colNumber}/>}
                   {showAlertStatus.show && <Notification />}
-                </Box>
+                </Box>}
+
+                {publicPage && <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
+                  <PublicListCategories bodyWidth={bodyWidth} colNumber={colNumber}/>
+                </Box>}
               </Box>
             )}
           </ResponsiveContext.Consumer>

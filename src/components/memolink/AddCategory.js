@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { setListsData, setShowAlertStatus } from '../../store/Actions';
 import apiPost from '../../api/apiPost';
 import apiGet from '../../api/apiGet';
+import SetPublic from "./SetPublic";
 
 const mapStateToProps = (state) => {
   const {
@@ -78,21 +79,25 @@ class AddCategory extends PureComponent {
   render() {
     const { open } = this.state;
     const { bodyWidth } = this.props;
-    const btnMargin = bodyWidth > 770 ? {"right": "small", "top": "small"} : {"right": "xsmall", "top": "xsmall"};
+    const btnMargin = bodyWidth > 770 ? {"right": "small", "left": "small"} : {"right": "xsmall", "left": "xsmall"};
+    const btnLabel = bodyWidth > 480 ? 'Add a Category' : '';
     return (
       <>
+      <Box direction="row" justify="between" alignContent="center" style={{marginTop:"16px", marginBottom:"16px", height:"36px"}}>
+        <SetPublic />
         <Button
           plain
           style={{borderRadius:"0", color:"#F8F8F8", padding: "5px"}}
           margin={btnMargin}
-          alignSelf="end"
+          alignSelf="center"
           icon={<Add/>}
-          label="Add a Category"
+          label={btnLabel}
           hoverIndicator="neutral-2"
           focusIndicator={false}
           primary
           onClick={this.onOpen}
         />
+        </Box>
         
         {open && (
           <Layer

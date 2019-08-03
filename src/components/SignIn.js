@@ -42,37 +42,38 @@ class SignIn extends Component {
     const { username, password } = this.state;
     const { dispatch } = this.props;
     event.preventDefault();
-    const response = apiSignIn(username, password);
-    const responseJSON = await response;
+    const response = await apiSignIn(username, password);
 
-    if (responseJSON.data.code === 200) {
-      const { jwt, userid, role } = responseJSON.data;
-      dispatch(setUserData({ jwt, userid, isLogged: true }));
+    if (response.data.code === 200) {
+      const { jwt, userid, role, memolink_public, memolink_public_url } = response.data;
+      dispatch(setUserData({ jwt, userid, isLogged: true, memolink_public, memolink_public_url }));
       localStorage.setItem('jwt', jwt);
       localStorage.setItem('userid', userid);
       localStorage.setItem('role', role);
+      localStorage.setItem('memolink_public', memolink_public);
+      localStorage.setItem('memolink_public_url', memolink_public_url);
       localStorage.setItem('date', Date.now() / 1000);
       dispatch(setShowAlertStatus({
-        title: responseJSON.data.status,
-        text: responseJSON.data.message,
+        title: response.data.status,
+        text: response.data.message,
         show: true,
         variant: 'status-ok',
       }));
     }
 
-    if (responseJSON.data.code === 404) {
+    if (response.data.code === 404) {
       dispatch(setShowAlertStatus({
-        title: responseJSON.data.status,
-        text: responseJSON.data.message,
+        title: response.data.status,
+        text: response.data.message,
         show: true,
         variant: 'status-error',
       }));
     }
     
-    if (responseJSON.data.code === 523) {
+    if (response.data.code === 523) {
       dispatch(setShowAlertStatus({
-        title: responseJSON.data.status,
-        text: responseJSON.data.message,
+        title: response.data.status,
+        text: response.data.message,
         show: true,
         variant: 'status-error',
       }));
@@ -90,13 +91,15 @@ class SignIn extends Component {
 
   render() {
     const { open, reveal } = this.state;
+    const { bodyWidth } = this.props;
+    const btnLabel = bodyWidth > 480 ? 'Login' : '';
     return (
         <Box>
           <Box align="center" margin={ {"left": "small"} }>
             <Button hoverIndicator="neutral-2" onClick={this.onOpen}>
               <Box pad="small" direction="row" align="center" gap="xxsmall">
                 <Login />
-                <Text>Login</Text>
+                <Text>{btnLabel}</Text>
               </Box>
             </Button>
           </Box>
