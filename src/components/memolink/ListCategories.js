@@ -191,6 +191,7 @@ class ListCategories extends PureComponent {
                   <div tooltip={`Delete ${cat.title} ?`}>
                   <Button
                     plain
+                    style={{marginTop: "5px"}}
                     reverse
                     icon={<Trash size='medium'/>}
                     onClick={() => this.onOpen(cat.id, cat.title)}

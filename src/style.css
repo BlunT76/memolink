@@ -7,6 +7,10 @@ a {
   font-weight: 400 !important;
 }
 
+.btnTextColor {
+  color: #FFFFFF;
+}
+
 [tooltip]:before {            
   /* needed - do not touch */
   content: attr(tooltip);

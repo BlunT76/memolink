@@ -87,7 +87,7 @@ class AddCategory extends PureComponent {
         <SetPublic />
         <Button
           plain
-          style={{borderRadius:"0", color:"#F8F8F8", padding: "5px"}}
+          style={{borderRadius:"0", color:"#FFFFFF", padding: "5px"}}
           margin={btnMargin}
           alignSelf="center"
           icon={<Add/>}

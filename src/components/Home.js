@@ -15,6 +15,7 @@ const Home = (props) => {
           <Image
             fit="contain"
             src={screenshot}
+            alt="Extension screenshot"
           />
         </Box>
         <Text color="dark-1">

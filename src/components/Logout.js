@@ -30,7 +30,7 @@ class LogoutBtn extends Component {
           <Button hoverIndicator="neutral-2" onClick={() => this.logout()}>
             <Box pad="small" direction="row" align="center" gap="xxsmall">
               <Logout />
-              <Text>{btnLabel}</Text>
+              <Text className="btnTextColor">{btnLabel}</Text>
             </Box>
           </Button>
         </Box>

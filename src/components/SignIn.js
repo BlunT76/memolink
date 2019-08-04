@@ -99,7 +99,7 @@ class SignIn extends Component {
             <Button hoverIndicator="neutral-2" onClick={this.onOpen}>
               <Box pad="small" direction="row" align="center" gap="xxsmall">
                 <Login />
-                <Text>{btnLabel}</Text>
+                <Text className="btnTextColor">{btnLabel}</Text>
               </Box>
             </Button>
           </Box>
@@ -151,7 +151,7 @@ class SignIn extends Component {
                     label="Submit"
                     hoverIndicator="neutral-2"
                     margin={{"top": "medium"}}
-                    style={{borderRadius:"0", color:"#F8F8F8",background:"brand", padding: "5px", boxShadow: "none", border: "0 none"}}
+                    style={{borderRadius:"0", color:"#FFFFFF",background:"brand", padding: "5px", boxShadow: "none", border: "0 none"}}
                     primary
                   />
                 </Box>

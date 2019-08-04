@@ -28,7 +28,8 @@ const theme = {
       "status-critical": "#e74c3c",
       "status-error": "#e74c3c",
       "status-ok": "#27ae60",
-      "dark-1": "#2c3e50"
+      "dark-1": "#2c3e50",
+      "light-1": "FFFFFF"
       
     },
     font: {
@@ -112,7 +113,7 @@ class AppContainer extends PureComponent {
               <Box fill>
                 <AppBar>
                   <Box direction="row" justify="start" basis="2/3">
-                  <Heading style={{overflowWrap: 'normal', wordBreak: 'normal'}} alignSelf="center" level='3' margin='none'>{publicPage ? `Public MemoLinks ${publicPageUsername}` : 'MemoLinks'}</Heading>
+                  <Heading className="btnTextColor" style={{overflowWrap: 'normal', wordBreak: 'normal'}} alignSelf="center" level='3' margin='none'>{publicPage ? `Public MemoLinks ${publicPageUsername}` : 'MemoLinks'}</Heading>
                   </Box>
                   <Box direction="row" justify="end" basis="1/3">
                     {!user.isLogged && !publicPage && <SignIn bodyWidth={bodyWidth} />}

@@ -91,6 +91,7 @@ class AddLink extends PureComponent {
       <Box margin="none">
         <Button
           plain
+          alignSelf="center"
           icon={<Add size='medium'/>}
           hoverIndicator="neutral-2"
           onClick={this.onOpen}>
