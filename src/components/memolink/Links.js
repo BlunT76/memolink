@@ -7,7 +7,7 @@ const Links = (props) => {
   const { label, link, id, deleteLink } = props;
   
   return (
-  <Box direction="row" justify="between" gap="xxsmall" pad='xsmall'>
+  <Box direction="row" justify="between" gap="xxsmall" pad='xsmall' className="linkBorder">
     {openConfirmation && (
       <Layer
         position="center"

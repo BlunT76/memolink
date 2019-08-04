@@ -11,6 +11,12 @@ a {
   color: #FFFFFF;
 }
 
+.linkBorder {
+  border-top: solid 1px ;
+  border-image-source: linear-gradient(to right,white, rgba(25, 118, 210, 0.3), white);
+  border-image-slice: 1;
+}
+
 [tooltip]:before {            
   /* needed - do not touch */
   content: attr(tooltip);
