@@ -21,7 +21,7 @@ class PublicListCategories extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      nopublic: false,
+      isPublic: true,
       msg: '',
     }
   }
@@ -34,7 +34,7 @@ class PublicListCategories extends PureComponent {
     const response = await apiGetPublicPages(window.location.pathname.split('/')[3]);
     if(response && response.data.code === 404) {
       this.setState({
-        nopublic: true,
+        isPublic: false,
         msg: response.data.message
       });
       return null;
@@ -54,14 +54,15 @@ class PublicListCategories extends PureComponent {
   }
 
   render() {
-    const { lists, colNumber, links } = this.props;
-    const { nopublic, msg } = this.state;
+    const { lists, colNumber, links, bodyWidth } = this.props;
+    const { isPublic, msg } = this.state;
+
     return (
-      <Box fill>
-        {nopublic && <Heading level="2" textAlign="center" color="brand">{msg}</Heading>}
-        <MasonryLayout columns={colNumber} gap={10}>
+      <Box fill margin='small'>
+        {!isPublic && <Heading level="2" textAlign="center" color="brand">{msg}</Heading>}
+        <MasonryLayout bodyWidth={bodyWidth} columns={colNumber} gap={10}>
           {lists && lists.length > 0 && lists.map((cat,i) => 
-            <Box key={`cat${i}`} pad='xsmall' margin='small' border={{ side: 'all' }} elevation="small">
+            <Box key={`cat${i}`} pad='xsmall' border={{ side: 'all' }} elevation="small">
               <Box direction="row" justify="between" gap="xxsmall">
                 <Heading margin="xxsmall" level="4" textAlign="center" color="brand">{cat.title}</Heading>
               </Box>

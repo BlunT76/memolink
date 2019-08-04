@@ -1,3 +1,12 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  font-weight: 400 !important;
+}
+
 [tooltip]:before {            
   /* needed - do not touch */
   content: attr(tooltip);

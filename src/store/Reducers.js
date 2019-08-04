@@ -13,7 +13,7 @@ const initialState = {
     jwt: null,
     userid: null,
     isLogged: false,
-    memolink_public: false,
+    memolink_public: 0,
     memolink_public_url: 0,
   },
   publicPage: false,

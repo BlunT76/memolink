@@ -7,9 +7,9 @@ const Home = (props) => {
   return (
     <Box justify="center" align="center" fill>
       <Heading color="brand">Welcome to MemoLinks</Heading>
-      <Text>Create Bookmarks Categories, Add Links to yours Categories,  </Text><br/>
+      <Text color="dark-1">Create Bookmarks Categories, Add Links to yours Categories,  </Text><br/>
       <Text color="brand"><strong>Done !!!</strong></Text><br/>
-      <Text>Activate Public ON and Share your MemoLinks with friends !!!</Text><br/>
+      <Text color="dark-1">Activate Public ON and Share your MemoLinks with friends !!!</Text><br/>
       <Box direction="row" align="center">
         <Box height="small" width="small">
           <Image
@@ -27,7 +27,7 @@ const Home = (props) => {
         </Text>
       </Box>
       <br/>
-      <Text>MemoLinks is Free and Opensource, no ads, no tracking ...</Text>
+      <Text color="dark-1">MemoLinks is Free and Opensource, no ads, no tracking ...</Text>
       <Anchor color="dark-1" icon={<Github size="medium"/>} href="https://github.com/BlunT76/memolink" />
     </Box>
   )

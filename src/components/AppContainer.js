@@ -20,11 +20,16 @@ const mapStateToProps = (state) => {
 const theme = {
   global: {
     colors: {
-      brand: '#3f50b5',
-      "neutral-2": "#002884",
+      "brand": '#1976d2',
+      "neutral-2": "#004ba0",
       "accent-2": "#757ce8",
       "accent-3": "#81FCED",
       "accent-4": "#FFCA58",
+      "status-critical": "#e74c3c",
+      "status-error": "#e74c3c",
+      "status-ok": "#27ae60",
+      "dark-1": "#2c3e50"
+      
     },
     font: {
       family: 'Roboto',
@@ -66,10 +71,11 @@ class AppContainer extends PureComponent {
       const jwtExpireAt = +localStorage.getItem('date') + 86220;
       if (jwtExpireAt > Date.now() / 1000) {
         const { dispatch } = this.props;
+
         const jwt = localStorage.getItem('jwt');
         const userid = localStorage.getItem('userid');
         const role = localStorage.getItem('role');
-        const memolink_public = localStorage.getItem('memolink_public')=== 'true' ? true : false;
+        const memolink_public = +localStorage.getItem('memolink_public');
         const memolink_public_url = localStorage.getItem('memolink_public_url');
 
         dispatch(setUserData({
