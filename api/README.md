@@ -1,6 +1,6 @@
 # MemoLinks API
 
-## IMPORTANT !!! RENAME THIS FILE TO api.php
+## IMPORTANT !!! RENAME api_example.php TO api.php
 
 Needs MySQL or MariaDB
 Create the database with schema.sql
