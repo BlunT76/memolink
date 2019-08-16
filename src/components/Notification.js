@@ -45,14 +45,13 @@ class Notification extends PureComponent {
           <Box
             align="center"
             direction="row"
-            gap="small"
             justify="between"
             round="medium"
             elevation="medium"
             pad={{ vertical: "xsmall", horizontal: "small" }}
             background={showAlertStatus.variant}
           >
-            <Box align="center" direction="row" gap="xsmall">
+            <Box align="center" direction="row">
               <StatusGood />
               <Text>{showAlertStatus.title}: {showAlertStatus.text}</Text>
             </Box>

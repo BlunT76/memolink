@@ -7,9 +7,8 @@ const AppBar = (props) => (
     direction='row'
     align='center'
     background='brand'
-    pad={{ left: 'medium', right: 'small', vertical: 'small' }}
     elevation='medium'
-    style={{ zIndex: '1' }}
+    style={{ zIndex: '1', minHeight: '48px' }}
     {...props}
   />
 );

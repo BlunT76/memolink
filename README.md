@@ -1,11 +1,14 @@
 # MemoLinks
+## MemoLinks is an easy to use Bookmark Manager
+Create Bookmarks Categories, Add Links to yours Categories, Done !!!
+* Imports / Exports compatible with Chromium based and Firefox browsers
+* Share your MemoLinks with friends by activating the public mode
+* Choose which categories are public
+* Follow an user's new links with a JSON Feed
+* Reorganize yours links by drag and drop
+* Search links easily
+* Available extension to add links with url and title auto detection
 
-Create Bookmarks Categories, Add Links to yours Categories
-
-## Done !!!
-
-A Chrome extension is available, add links to MemoLink with 3 clicks !!!
-
-Activate Public ON and Share your MemoLinks with friends !!!
+Chrome extension is available, Firefox extension will come...
 
 Demo here: https://philpereira.alwaysdata.net/memolink/

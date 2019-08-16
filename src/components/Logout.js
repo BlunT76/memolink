@@ -18,7 +18,14 @@ class LogoutBtn extends Component {
       isLogged: false,
       role: 0,
     }));
+    const tmp = localStorage.getItem('showlinks');
+    if (tmp !== null) {
+      localStorage.clear();
+      localStorage.setItem('showlinks', tmp);
+      return;
+    } 
     localStorage.clear();
+    localStorage.setItem('showlinks', JSON.stringify([]));
   }
 
   render() {
@@ -28,7 +35,7 @@ class LogoutBtn extends Component {
       <Box>
         <Box align="center" margin={ {"left": "small"} }>
           <Button hoverIndicator="neutral-2" onClick={() => this.logout()}>
-            <Box pad="small" direction="row" align="center" gap="xxsmall">
+            <Box pad="small" direction="row" align="center" >
               <Logout />
               <Text className="btnTextColor">{btnLabel}</Text>
             </Box>

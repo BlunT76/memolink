@@ -5,6 +5,7 @@ import {
   SET_LINKS_DATA,
   SET_PUBLIC,
   SET_PUBLIC_USERNAME,
+  SET_SHOW_LINKS,
 } from './Actions';
 
 
@@ -21,6 +22,7 @@ const initialState = {
   lists: [],
   links:[],
   showAlertStatus: {},
+  showLinks: [],
 };
 
 const memolinkReducer = (state = initialState, action) => {
@@ -57,6 +59,11 @@ const memolinkReducer = (state = initialState, action) => {
         ...state,
         publicPageUsername: action.payload,
       };
+    case SET_SHOW_LINKS:
+      return {
+        ...state,
+        showLinks: action.payload,
+      }
     default:
       return state;
   }

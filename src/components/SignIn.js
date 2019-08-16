@@ -94,10 +94,10 @@ class SignIn extends Component {
     const { bodyWidth } = this.props;
     const btnLabel = bodyWidth > 480 ? 'Login' : '';
     return (
-        <Box>
-          <Box align="center" margin={ {"left": "small"} }>
+        <>
+          <Box align="center">
             <Button hoverIndicator="neutral-2" onClick={this.onOpen}>
-              <Box pad="small" direction="row" align="center" gap="xxsmall">
+              <Box pad="small" direction="row" align="center">
                 <Login />
                 <Text className="btnTextColor">{btnLabel}</Text>
               </Box>
@@ -161,7 +161,7 @@ class SignIn extends Component {
               </Box>
             </Layer>
           )}
-        </Box>
+        </>
     );
   }
 }

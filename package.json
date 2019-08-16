@@ -5,16 +5,22 @@
   "homepage": "/memolink/",
   "dependencies": {
     "axios": "^0.19.0",
+    "bookmarks-parser": "^1.5.0",
+    "eol": "^0.9.1",
     "grommet": "^2.7.3",
     "grommet-controls": "^1.1.19",
     "grommet-icons": "^4.2.0",
     "react": "^16.8.6",
+    "react-device-detect": "^1.7.5",
     "react-dom": "^16.8.6",
+    "react-file-reader": "^1.1.4",
+    "react-files": "^2.4.8",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "uninstall": "0.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

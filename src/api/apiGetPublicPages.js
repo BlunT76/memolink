@@ -10,7 +10,7 @@ const myInit = {
   cache: 'default',
 };
 
-const apiGetPublicPages = async (id = 0) => {
+const apiGetPublicPages = async (table, id = 0) => {
   const request = axios.create({
     withCredentials: false,
     headers: {

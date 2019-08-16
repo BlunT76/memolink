@@ -24,9 +24,9 @@ class QuitPublic extends Component {
       <Box>
         <Box align="center" margin={ {"left": "small"} }>
           <Button hoverIndicator="neutral-2" onClick={() => this.quitPublicPages()}>
-            <Box pad="small" direction="row" align="center" gap="xxsmall">
+            <Box pad="small" direction="row" align="center">
               <Logout />
-              <Text>{btnLabel}</Text>
+              <Text className="btnTextColor">{btnLabel}</Text>
             </Box>
           </Button>
         </Box>

@@ -16,10 +16,10 @@ import SetPublic from "./SetPublic";
 
 const mapStateToProps = (state) => {
   const {
-    user, projects, lists, selectedProjectId,
+    user, projects, lists,
   } = state;
   return {
-    user, projects, lists, selectedProjectId,
+    user, projects, lists,
   };
 };
 

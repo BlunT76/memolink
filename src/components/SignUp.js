@@ -77,10 +77,10 @@ class SignUp extends PureComponent {
     const { bodyWidth } = this.props;
     const btnLabel = bodyWidth > 480 ? 'SignUp' : '';
     return (
-        <Box>
-          <Box align="center" margin={ {"left": "small"} }>
+        <>
+          <Box align="center">
             <Button hoverIndicator="neutral-2" onClick={this.onOpen}>
-              <Box pad="small" direction="row" align="center" gap="xxsmall">
+              <Box pad="small" direction="row" align="center">
                 <UserAdd />
                 <Text className="btnTextColor">{btnLabel}</Text>
               </Box>
@@ -145,7 +145,7 @@ class SignUp extends PureComponent {
               </Box>
             </Layer>
           )}
-        </Box>
+        </>
     );
   }
 }

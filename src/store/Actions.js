@@ -15,3 +15,6 @@ export const setPublic = payload => ({ type: SET_PUBLIC, payload });
 
 export const SET_PUBLIC_USERNAME = 'SET_PUBLIC_USERNAME';
 export const setPublicUsername = payload => ({ type: SET_PUBLIC_USERNAME, payload });
+
+export const SET_SHOW_LINKS = 'SET_SHOW_LINKS';
+export const setShowLinks = payload => ({ type: SET_SHOW_LINKS, payload });
