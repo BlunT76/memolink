@@ -1,6 +1,8 @@
-import React, { PureComponent } from "react";
-import { Box, Button, Layer, Text } from 'grommet';
-import { FormClose, StatusGood } from "grommet-icons";
+import React, { PureComponent } from 'react';
+import {
+  Box, Button, Layer, Text,
+} from 'grommet';
+import { FormClose, StatusGood } from 'grommet-icons';
 import { connect } from 'react-redux';
 import { setShowAlertStatus } from '../store/Actions';
 
@@ -10,14 +12,6 @@ const mapStateToProps = (state) => {
 };
 
 class Notification extends PureComponent {
-  state = {
-    open: false
-  };
-
-  onOpen = () => this.setState({ open: true });
-
-  onClose = () => this.setState({ open: undefined });
-
   dismissAlert = () => {
     const { dispatch } = this.props;
     setTimeout(() => {
@@ -34,32 +28,32 @@ class Notification extends PureComponent {
     const { showAlertStatus } = this.props;
     this.dismissAlert();
     return (
-        <Layer
-          position="bottom"
-          modal={false}
-          margin={{ vertical: "medium", horizontal: "small" }}
-          onEsc={this.onClose}
-          responsive={false}
-          plain
+      <Layer
+        position="bottom"
+        modal={false}
+        margin={{ vertical: 'medium', horizontal: 'small' }}
+        onEsc={this.onClose}
+        responsive={false}
+        plain
+      >
+        <Box
+          align="center"
+          direction="row"
+          justify="between"
+          round="medium"
+          elevation="medium"
+          pad={{ vertical: 'xsmall', horizontal: 'small' }}
+          background={showAlertStatus.variant}
         >
-          <Box
-            align="center"
-            direction="row"
-            justify="between"
-            round="medium"
-            elevation="medium"
-            pad={{ vertical: "xsmall", horizontal: "small" }}
-            background={showAlertStatus.variant}
-          >
-            <Box align="center" direction="row">
-              <StatusGood />
-              <Text>{showAlertStatus.title}: {showAlertStatus.text}</Text>
-            </Box>
-            <Button icon={<FormClose />} onClick={this.onClose} plain />
+          <Box align="center" direction="row">
+            <StatusGood />
+            <Text>{showAlertStatus.title}: {showAlertStatus.text}</Text>
           </Box>
-        </Layer>
-      
-    )
+          <Button icon={<FormClose />} onClick={this.onClose} plain />
+        </Box>
+      </Layer>
+
+    );
   }
 }
 

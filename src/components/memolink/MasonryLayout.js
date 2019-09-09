@@ -1,45 +1,49 @@
 import React from 'react';
 import { Box } from 'grommet';
 
-const MasonryLayout = props => {
-  const { gap, columns, bodyWidth, children } = props;
+const MasonryLayout = (props) => {
+  const {
+    gap, columns, bodyWidth, children,
+  } = props;
   const columnWrapper = {};
   const result = [];
   // create columns
-  for (let i = 0; i < columns; i++) {
+  for (let i = 0; i < columns; i += 1) {
     columnWrapper[`column${i}`] = [];
   }
 
   // Divide the children into columns as shown below.
-  for (let i = 0; i < children.length; i++) {
+  for (let i = 0; i < children.length; i += 1) {
     const columnIndex = i % columns;
     columnWrapper[`column${columnIndex}`].push(
-      <div key={i} style={{ marginBottom: `${gap}px`, minWidth:"250px"}}>
+      <div key={i} style={{ marginBottom: `${gap}px`, minWidth: '250px' }}>
         {children[i]}
-      </div>
+      </div>,
     );
   }
 
-  // The next step will be wrapping the items in each column with a div and pushing it into the result array as shown below.
-  for (let i = 0; i < columns; i++) {
+  // The next step will be wrapping the items in each column
+  // with a div and pushing it into the result array as shown below.
+  for (let i = 0; i < columns; i += 1) {
     result.push(
       <div
         key={i}
         style={{
-          marginLeft: `${i > 0 && bodyWidth > 768  ? gap : 0}px`,
+          marginLeft: `${i > 0 && bodyWidth > 768 ? gap : 0}px`,
           flex: 1,
           flexBasis: '100%',
-        }}>
+        }}
+      >
         {columnWrapper[`column${i}`]}
-      </div>
+      </div>,
     );
   }
 
   return (
-    <Box direction="row-responsive" >
+    <Box direction="row-responsive">
       {result}
     </Box>
   );
-}
+};
 
 export default MasonryLayout;

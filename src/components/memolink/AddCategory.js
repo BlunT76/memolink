@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import { Add, Close } from "grommet-icons";
+import React, { PureComponent } from 'react';
+import { Add, Close } from 'grommet-icons';
 import {
   Box,
   Button,
@@ -7,12 +7,12 @@ import {
   Heading,
   Layer,
   TextInput,
-} from "grommet";
+} from 'grommet';
 import { connect } from 'react-redux';
 import { setListsData, setShowAlertStatus } from '../../store/Actions';
 import apiPost from '../../api/apiPost';
 import apiGet from '../../api/apiGet';
-import SetPublic from "./SetPublic";
+import SetPublic from './SetPublic';
 
 const mapStateToProps = (state) => {
   const {
@@ -30,10 +30,10 @@ class AddCategory extends PureComponent {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       open: false,
-      title: ''
+      title: '',
     };
   }
-  
+
   getCategories = async () => {
     const { dispatch, user } = this.props;
     const response = await apiGet(user.jwt, 'categories');
@@ -79,26 +79,26 @@ class AddCategory extends PureComponent {
   render() {
     const { open } = this.state;
     const { bodyWidth } = this.props;
-    const btnMargin = bodyWidth > 770 ? {"right": "small", "left": "small"} : {"right": "xsmall", "left": "xsmall"};
+    const btnMargin = bodyWidth > 770 ? { right: 'small', left: 'small' } : { right: 'xsmall', left: 'xsmall' };
     const btnLabel = bodyWidth > 480 ? 'Add a Category' : '';
     return (
       <>
-      <Box direction="row" justify="between" alignContent="center" style={{marginTop:"16px", marginBottom:"16px", height:"36px"}}>
-        <SetPublic />
-        <Button
-          plain
-          style={{borderRadius:"0", color:"#FFFFFF", padding: "5px"}}
-          margin={btnMargin}
-          alignSelf="center"
-          icon={<Add/>}
-          label={btnLabel}
-          hoverIndicator="neutral-2"
-          focusIndicator={false}
-          primary
-          onClick={this.onOpen}
-        />
+        <Box direction="row" justify="between" alignContent="center" style={{ marginTop: '16px', marginBottom: '16px', height: '36px' }}>
+          <SetPublic />
+          <Button
+            plain
+            style={{ borderRadius: '0', color: '#FFFFFF', padding: '5px' }}
+            margin={btnMargin}
+            alignSelf="center"
+            icon={<Add />}
+            label={btnLabel}
+            hoverIndicator="neutral-2"
+            focusIndicator={false}
+            primary
+            onClick={this.onOpen}
+          />
         </Box>
-        
+
         {open && (
           <Layer
             position="right"
@@ -121,22 +121,22 @@ class AddCategory extends PureComponent {
                 </Heading>
                 <Button icon={<Close />} onClick={this.onClose} />
               </Box>
-              <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
+              <Box flex="grow" overflow="auto" pad={{ vertical: 'medium' }}>
                 <FormField label="Category Name">
-                  <TextInput type="text" name="title" onChange={this.handleChange}/>
+                  <TextInput type="text" name="title" onChange={this.handleChange} />
                 </FormField>
                 <Button
                   type="submit"
                   label="Submit"
-                  margin={{"top": "medium"}}
+                  margin={{ top: 'medium' }}
                   hoverIndicator="neutral-2"
-                  style={{borderRadius:"0", color:"#F8F8F8",background:"brand", padding: "5px", boxShadow: "none", border: "0 none"}}
+                  style={{
+                    borderRadius: '0', color: '#F8F8F8', background: 'brand', padding: '5px', boxShadow: 'none', border: '0 none',
+                  }}
                   primary
                 />
               </Box>
-              <Box flex={false} as="footer" align="start">
-                
-              </Box>
+              <Box flex={false} as="footer" align="start" />
             </Box>
           </Layer>
         )}
@@ -146,4 +146,3 @@ class AddCategory extends PureComponent {
 }
 
 export default connect(mapStateToProps)(AddCategory);
-

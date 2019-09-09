@@ -1,13 +1,13 @@
-import React, { PureComponent } from "react";
-import { Add, Close } from "grommet-icons";
+import React, { PureComponent } from 'react';
+import { Add, Close } from 'grommet-icons';
 import {
   Box,
   Button,
   FormField,
   Heading,
   Layer,
-  TextInput
-} from "grommet";
+  TextInput,
+} from 'grommet';
 import { connect } from 'react-redux';
 import { setListsData, setShowAlertStatus } from '../../store/Actions';
 import apiPost from '../../api/apiPost';
@@ -33,7 +33,7 @@ class AddLink extends PureComponent {
       label: '',
     };
   }
-  
+
   getCategories = async () => {
     const { dispatch, user } = this.props;
     const response = await apiGet(user.jwt, 'categories');
@@ -51,11 +51,15 @@ class AddLink extends PureComponent {
 
   postLink = async (event) => {
     event.preventDefault();
-    const { dispatch, user, cat, catName, refresh } = this.props;
+    const {
+      dispatch, user, cat, catName, refresh,
+    } = this.props;
     const { link, label } = this.state;
-    const data = { link, label, categories_id: cat, users_id: user.userid };
+    const data = {
+      link, label, categories_id: cat, users_id: user.userid,
+    };
     const res = await apiPost(user.jwt, 'links', data);
-    
+
     if (res.status === 200 && Number.isInteger(res.data)) {
       dispatch(setShowAlertStatus({
         title: 'Success',
@@ -92,10 +96,10 @@ class AddLink extends PureComponent {
         <Button
           plain
           alignSelf="center"
-          icon={<Add size='medium'/>}
+          icon={<Add size="medium" />}
           hoverIndicator="neutral-2"
-          onClick={this.onOpen}>
-        </Button>
+          onClick={this.onOpen}
+        />
 
         {open && (
           <Layer
@@ -115,29 +119,29 @@ class AddLink extends PureComponent {
             >
               <Box flex={false} direction="row" justify="between" onSubmit={this.postLink}>
                 <Heading level={2} margin="none">
-                {`Add a Link to ${catName}`}
+                  {`Add a Link to ${catName}`}
                 </Heading>
                 <Button icon={<Close />} onClick={this.onClose} />
               </Box>
-              <Box flex="grow" overflow="auto" pad={{ vertical: "medium" }}>
+              <Box flex="grow" overflow="auto" pad={{ vertical: 'medium' }}>
                 <FormField label="Link">
-                  <TextInput type="text" name="link" onChange={this.handleChange}/>
+                  <TextInput type="text" name="link" onChange={this.handleChange} />
                 </FormField>
                 <FormField label="Label">
-                  <TextInput type="text" name="label" onChange={this.handleChange}/>
+                  <TextInput type="text" name="label" onChange={this.handleChange} />
                 </FormField>
                 <Button
                   type="submit"
                   label="Submit"
-                  margin={{"top": "medium"}}
+                  margin={{ top: 'medium' }}
                   hoverIndicator="neutral-2"
-                  style={{borderRadius:"0", color:"#F8F8F8",background:"brand", padding: "5px", boxShadow: "none", border: "0 none"}}
+                  style={{
+                    borderRadius: '0', color: '#F8F8F8', background: 'brand', padding: '5px', boxShadow: 'none', border: '0 none',
+                  }}
                   primary
                 />
               </Box>
-              <Box flex={false} as="footer" align="start">
-                
-              </Box>
+              <Box flex={false} as="footer" align="start" />
             </Box>
           </Layer>
         )}

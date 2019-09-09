@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Logout } from "grommet-icons";
-import { Box, Button, Text } from "grommet";
+import React, { Component } from 'react';
+import { Logout } from 'grommet-icons';
+import { Box, Button, Text } from 'grommet';
 import { connect } from 'react-redux';
 import { setListsData, setLinksData, setPublic } from '../../store/Actions';
 
@@ -22,7 +22,7 @@ class QuitPublic extends Component {
     const btnLabel = bodyWidth > 480 ? 'Quit Public Page' : '';
     return (
       <Box>
-        <Box align="center" margin={ {"left": "small"} }>
+        <Box align="center" margin={{ left: 'small' }}>
           <Button hoverIndicator="neutral-2" onClick={() => this.quitPublicPages()}>
             <Box pad="small" direction="row" align="center">
               <Logout />

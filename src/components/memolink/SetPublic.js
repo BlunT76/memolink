@@ -1,5 +1,7 @@
-import React, { PureComponent } from "react";
-import { Anchor, Button, Box, CheckBox, Text } from "grommet";
+import React, { PureComponent } from 'react';
+import {
+  Anchor, Button, Box, CheckBox, Text,
+} from 'grommet';
 import { FormView, FormViewHide } from 'grommet-icons';
 import { connect } from 'react-redux';
 import { setUserData } from '../../store/Actions';
@@ -15,59 +17,65 @@ const mapStateToProps = (state) => {
 };
 
 class SetPublic extends PureComponent {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       show: false,
-    }
+    };
   }
 
   setChecked = async () => {
     const { user, dispatch } = this.props;
-    const { memolink_public } = user;
+    const { memolinkPublic } = user;
 
-    const userUpdate = {...user, memolink_public: memolink_public === 0 ? 1 : 0};
+    const userUpdate = { ...user, memolink_public: memolinkPublic === 0 ? 1 : 0 };
 
-    const response = await apiPut(user.jwt, 'setpublic', {memolink_public: userUpdate.memolink_public}, user.userid);
+    const response = await apiPut(user.jwt, 'setpublic', { memolink_public: userUpdate.memolink_public }, user.userid);
     if (response && response.data === 1) {
-      dispatch(setUserData(userUpdate))
+      dispatch(setUserData(userUpdate));
       localStorage.setItem('memolink_public', userUpdate.memolink_public);
     }
   };
 
   setShow = (e) => {
-    this.setState({show: e});
+    this.setState({ show: e });
   }
 
   render() {
     const { user } = this.props;
     const { show } = this.state;
-    const { memolink_public } = user;
+    const { memolinkPublic } = user;
 
-    const boolMemolink_public = memolink_public === 1 ? true : false;
-    const publicUrl = process.env.REACT_APP_URL+"public/"+user.memolink_public_url;
-    const toggleLabel = boolMemolink_public ? "Public ON" : "Public OFF";
+    const boolMemolinkPublic = memolinkPublic === 1;
+    const publicUrl = `${process.env.REACT_APP_URL}public/${user.memolink_public_url}`;
+    const toggleLabel = boolMemolinkPublic ? 'Public ON' : 'Public OFF';
 
     return (
-      <Box direction="row" alignSelf="center" margin={{"left": "small"}}>
-        {!show && <CheckBox
-          checked={boolMemolink_public}
-          margin={{"left": "small"}}
-          toggle={true}
+      <Box direction="row" alignSelf="center" margin={{ left: 'small' }}>
+        {!show && (
+        <CheckBox
+          checked={boolMemolinkPublic}
+          margin={{ left: 'small' }}
+          toggle
           label={toggleLabel}
           onChange={() => this.setChecked()}
-        />}
+        />
+        )}
         <Box>
-        {boolMemolink_public &&<Button
+          {boolMemolinkPublic && (
+          <Button
             size="small"
-            style={{borderRadius:"0", color:"#F8F8F8", padding: "5px"}}
+            style={{ borderRadius: '0', color: '#F8F8F8', padding: '5px' }}
             icon={!show ? <FormView /> : <FormViewHide />}
             onClick={() => this.setShow(!show)}
-            label={show &&
+            label={show
+              && (
               <Anchor alignSelf="end" size="xsmall" color="dark-1" href={publicUrl} target="_blank" rel="noreferrer noopener">
                 <Text size="xsmall" wordBreak="break-all">{publicUrl}</Text>
-              </Anchor>}
-          />}
+              </Anchor>
+              )}
+          />
+          )}
         </Box>
       </Box>
     );

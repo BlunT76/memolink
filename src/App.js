@@ -7,7 +7,7 @@ import memolinkReducer from './store/Reducers';
 const store = createStore(memolinkReducer);
 
 class App extends PureComponent {
-  render(){
+  render() {
     return (
       <Provider store={store}>
         <AppContainer />

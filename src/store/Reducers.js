@@ -20,7 +20,7 @@ const initialState = {
   publicPage: false,
   publicPageUsername: '',
   lists: [],
-  links:[],
+  links: [],
   showAlertStatus: {},
   showLinks: [],
 };
@@ -63,7 +63,7 @@ const memolinkReducer = (state = initialState, action) => {
       return {
         ...state,
         showLinks: action.payload,
-      }
+      };
     default:
       return state;
   }

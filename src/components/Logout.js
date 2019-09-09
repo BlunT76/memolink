@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Logout } from "grommet-icons";
-import { Box, Button, Text } from "grommet";
+import React, { Component } from 'react';
+import { Logout } from 'grommet-icons';
+import { Box, Button, Text } from 'grommet';
 import { connect } from 'react-redux';
 import { setUserData } from '../store/Actions';
 
@@ -23,7 +23,7 @@ class LogoutBtn extends Component {
       localStorage.clear();
       localStorage.setItem('showlinks', tmp);
       return;
-    } 
+    }
     localStorage.clear();
     localStorage.setItem('showlinks', JSON.stringify([]));
   }
@@ -33,9 +33,9 @@ class LogoutBtn extends Component {
     const btnLabel = bodyWidth > 480 ? 'Logout' : '';
     return (
       <Box>
-        <Box align="center" margin={ {"left": "small"} }>
+        <Box align="center" margin={{ left: 'small' }}>
           <Button hoverIndicator="neutral-2" onClick={() => this.logout()}>
-            <Box pad="small" direction="row" align="center" >
+            <Box pad="small" direction="row" align="center">
               <Logout />
               <Text className="btnTextColor">{btnLabel}</Text>
             </Box>
