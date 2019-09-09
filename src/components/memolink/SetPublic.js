@@ -26,9 +26,9 @@ class SetPublic extends PureComponent {
 
   setChecked = async () => {
     const { user, dispatch } = this.props;
-    const { memolinkPublic } = user;
+    const { memolink_public } = user;
 
-    const userUpdate = { ...user, memolink_public: memolinkPublic === 0 ? 1 : 0 };
+    const userUpdate = { ...user, memolink_public: memolink_public === 0 ? 1 : 0 };
 
     const response = await apiPut(user.jwt, 'setpublic', { memolink_public: userUpdate.memolink_public }, user.userid);
     if (response && response.data === 1) {
@@ -44,9 +44,9 @@ class SetPublic extends PureComponent {
   render() {
     const { user } = this.props;
     const { show } = this.state;
-    const { memolinkPublic } = user;
+    const { memolink_public } = user;
 
-    const boolMemolinkPublic = memolinkPublic === 1;
+    const boolMemolinkPublic = memolink_public === 1;
     const publicUrl = `${process.env.REACT_APP_URL}public/${user.memolink_public_url}`;
     const toggleLabel = boolMemolinkPublic ? 'Public ON' : 'Public OFF';
 

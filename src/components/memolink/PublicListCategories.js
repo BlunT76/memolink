@@ -76,11 +76,11 @@ class PublicListCategories extends PureComponent {
 
         {publicPageUsername
           && (
-          <Text size="small">
+          <Text size="small" style={{ marginBottom: '8px' }}>
             <Anchor
               icon={<Rss color="accent-4" />}
               href={rssUrl}
-              style={{ display: 'inline' }}
+              style={{ display: 'inline', alignItem: 'middle' }}
             />
             Follow {publicPageUsername}&apos;s new links with this JSON Feed
           </Text>
