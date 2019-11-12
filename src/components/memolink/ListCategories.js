@@ -46,7 +46,7 @@ class ListCategories extends PureComponent {
     const { dispatch } = this.props;
     this.getCategories();
     const tmp = localStorage.getItem('showlinks');
-    if (tmp !== null) {
+    if (tmp && tmp !== null && tmp.length > 0) {
       dispatch(setShowLinks(JSON.parse(tmp)));
     } else {
       dispatch(setShowLinks([]));
@@ -394,7 +394,7 @@ class ListCategories extends PureComponent {
                   return (
                     <Links
                       cat_id={e.categories_id}
-                      showLinks={showLinks}
+                      showLinks={showLinks || []}
                       key={e.id}
                       id={e.id}
                       link={e.link}
