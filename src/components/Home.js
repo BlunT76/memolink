@@ -14,7 +14,7 @@ const Home = props => (
       <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1" textAlign="start">Imports / Exports compatible with Chromium based and Firefox browsers</Text><br />
       <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1" textAlign="start">Share your MemoLinks with friends by activating the public mode</Text><br />
       <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1">Choose which categories are public</Text><br />
-      <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1">Follow an user&apos;s new links with a JSON Feed</Text><br />
+      <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1">Follow a user&apos;s new links with a JSON Feed</Text><br />
       <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1">Reorganize yours links by drag and drop</Text><br />
       <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1">Search links easily</Text><br />
       <FormNextLink style={{ verticalAlign: 'bottom' }} size="medium" /><Text color="dark-1">Available extension to add links with url and title auto detection</Text><br />
